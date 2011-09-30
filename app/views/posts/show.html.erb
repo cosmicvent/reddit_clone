@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @post.title %></h1>
+
+<p style='background-color:#ccc;border:solid 1px #333;'>
+  <%= @post.body %>
+</p>
+
+<form method='post' action='/posts/create-comment'>
+  <input type='hidden' name='post_id' value='<%= @post.id %>' />
+  <br />
+  <textarea name="body"></textarea>
+  <br />
+  <input type='submit' value='save' />
+</form>
+
+<br />
+
+<% @comments.each do |comment| %>
+  <p><%= comment.body %></p>
+<%end%>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

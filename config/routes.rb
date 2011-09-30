@@ -1,4 +1,8 @@
 RedditClone::Application.routes.draw do
+  resources :posts
+  #TODO:change the route to follow the convention
+  post 'posts/create-comment' => 'posts#create_comment'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
