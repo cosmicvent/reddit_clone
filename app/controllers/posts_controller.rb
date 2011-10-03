@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :user_is_authenticated, :except => [:index, :show]
   # GET /posts
   # GET /posts.json
   def index
@@ -14,7 +15,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.where(:post_id => @post.id)
+    #@user = User.find(@post.user_id)
+    #@comments = Comment.where(:post_id => @post.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,6 +44,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
@@ -87,7 +90,14 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comment.body = params[:body]
     @comment.post_id = params[:post_id]
+    @comment.user_id = current_user.id
     @comment.save
     redirect_to "/posts/#{params[:post_id]}"
   end
+
+  def user
+    #@posts = Post.where(:user_id => current_user.id)
+    @posts = current_user.posts
+  end
+
 end

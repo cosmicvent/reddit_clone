@@ -2,8 +2,9 @@ Reddit Clone
 ============
 
  + Users should be able to create a post(title, body)
- - Users should be able to create a comment(body) on posts
- - Users should be able to view a list of comments
+ + Users should be able to create a comment(body) on posts
+ + Users should be able to view a list of comments
+ - posts should show the name of the author
 
 
 Posts

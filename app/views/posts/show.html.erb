@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @post.title %></h1>
 
 <p style='background-color:#ccc;border:solid 1px #333;'>
   <%= @post.body %>
+</p>
+<p>
+  <%= @post.user.email %>
 </p>
 
 <form method='post' action='/posts/create-comment'>
@@ -16,8 +17,12 @@
 
 <br />
 
-<% @comments.each do |comment| %>
-  <p><%= comment.body %></p>
+<% @post.comments.each do |comment| %>
+  <p>
+    <%= comment.body %>
+    <br />
+    - <%= comment.user.email %>
+  </p>
 <%end%>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
